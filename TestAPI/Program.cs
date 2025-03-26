@@ -20,6 +20,8 @@ namespace TestAPI
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddOpenApi();
             builder.Services.AddSwaggerGen(options =>
             {

@@ -10,10 +10,12 @@ namespace TestAPI.Services
     {
         private readonly List<UserDTO> _users = new List<UserDTO>();
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public UserMockService(IConfiguration configuration)
+        public UserMockService(IConfiguration configuration, IHttpContextAccessor contextAccessor)
         {
             _configuration = configuration;
+            _contextAccessor = contextAccessor;
         }
 
         public string? Authenticate(UserDTO userDTO)
@@ -41,6 +43,12 @@ namespace TestAPI.Services
                 return false;
             _users.Add(userDTO);
             return true;
+        }
+
+        public UserDTO? GetCurrentUser()
+        {
+            var uniqName = _contextAccessor.HttpContext?.User.FindFirst(ClaimTypes.Name)?.Value;
+            return _users.SingleOrDefault(item => item.Name == uniqName);
         }
     }
 }

@@ -6,5 +6,6 @@ namespace TestAPI.Services
     {
         bool Register(UserDTO userDTO);
         string? Authenticate(UserDTO user);
+        UserDTO? GetCurrentUser();
     }
 }

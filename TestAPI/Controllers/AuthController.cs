@@ -42,7 +42,7 @@ namespace TestAPI.Controllers
         [Authorize]
         public IActionResult SecureEndpoint()
         {
-            return Ok(new { message = "This is a secure endpoint." });
+            return Ok(new { message = $"Hi {_userMockService.GetCurrentUser()!.Name}! This is a secure endpoint." });
         }
     }
 }
