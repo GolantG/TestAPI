@@ -43,7 +43,6 @@ namespace TestAPI.Controllers
         public IActionResult SecureEndpoint()
         {
             return Ok(new { message = "This is a secure endpoint." });
-            return blala;
         }
     }
 }
